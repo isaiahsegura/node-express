@@ -38,15 +38,22 @@ if(isProduction){
   mongoose.set('debug', true);
 }
 
+require('./models/User')
+
 app.use(require('./routes'));
 
 /// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
+app.get('/', function (req, res) {
+  return res.json({
+    status: 200,
+    message: 'It worked!'
+  });
 });
-
 /// error handlers
 
 // development error handler
